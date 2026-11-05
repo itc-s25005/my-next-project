@@ -1,5 +1,5 @@
-import styles from './index.module.css';
-import Link from 'next/link';
+import Link from "next/link";
+import styles from "./index.module.css";
 
 export default function Footer() {
   return (
@@ -17,7 +17,7 @@ export default function Footer() {
           </li>
         </ul>
       </nav>
-      <p className={styles.cr}>© SIMPLE. All Rights Reserved 2024</p>
+      <p className={styles.cr}>© SIMPLE. All rights reserved 2024</p>
     </footer>
   );
 }
