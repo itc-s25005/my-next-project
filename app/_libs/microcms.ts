@@ -49,8 +49,21 @@ export const getMembersList = async (queries?: MicroCMSQueries) => {
 export const getNewsList = async (queries?: MicroCMSQueries) => {
   "use cache";
   const listData = await client.getList<News>({
-      endpoint: "news",
-      queries,
-    });
-    return listData;
+    endpoint: "news",
+    queries,
+  });
+  return listData;
+};
+
+export const getNewsDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+) => {
+  "use cache";
+  const detailData = await client.getListDetail<News>({
+    endpoint: "news",
+    contentId,
+    queries,
+  });
+  return detailData;
 };
