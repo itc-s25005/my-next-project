@@ -100,11 +100,12 @@ export async function createContactData(
   );
 
   if (!result.ok) {
-    return {
-      status: "error",
-      message: "お問い合わせに失敗しました",
-    };
-  }
+  console.error("HubSpot error:", result.status, await result.text());
+  return {
+    status: "error",
+    message: "お問い合わせに失敗しました",
+  };
+}
 
   try {
     await result.json();
