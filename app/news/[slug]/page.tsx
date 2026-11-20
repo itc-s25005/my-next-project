@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getNewsDetail } from "@/app/_libs/microcms";
@@ -15,6 +16,20 @@ type Props = {
     dk?: string;
   }>;
 };
+
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const data = await getNewsDetail((await params).slug, { draftKey: (await searchParams).dk });
+
+  return {
+    title: data.title,
+    description: data.description,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      images: [data?.thumbnail?.url ?? ""],
+    },
+  }
+}
 
 export default function Page({ params, searchParams }: Props) {
   return (
